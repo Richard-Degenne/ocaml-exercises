@@ -1,0 +1,9 @@
+(library
+  (name exercises)
+  (public_name exercises)
+)
+(env
+  (dev
+    (flags (:standard -warn-error -37))
+  )
+)
