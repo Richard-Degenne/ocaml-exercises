@@ -18,3 +18,5 @@ type 'a node =
   | Many of int * 'a
 
 val node_encode : 'a list -> 'a node list
+
+val decode : 'a node list -> 'a list

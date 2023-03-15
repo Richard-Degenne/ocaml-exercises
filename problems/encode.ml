@@ -38,3 +38,18 @@ let node_encode l =
   match l with
   | [] -> []
   | h :: t -> aux [] (One h) t |> List.rev
+
+(* 12. Decode a run-length encoded list
+
+# decode [Many (4,"a"); One "b"; Many (2,"c"); Many (2,"a"); One "d"; Many (4,"e")];;
+- : string list = ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e"]
+*)
+
+let decode l =
+  let rec aux acc = function
+    | [] -> acc
+    | h :: t -> match h with
+      | One o -> aux (o :: acc) t
+      | Many (n, o) -> aux ((List.init n (fun _ -> o)) @ acc) t
+  in
+  aux [] l |> List.rev
